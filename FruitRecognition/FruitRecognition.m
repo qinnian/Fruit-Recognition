@@ -22,7 +22,7 @@ function varargout = FruitRecognition(varargin)
 
 % Edit the above text to modify the response to help untitled
 
-% Last Modified by GUIDE v2.5 24-Dec-2019 11:19:02
+% Last Modified by GUIDE v2.5 29-Dec-2019 22:10:53
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -45,7 +45,7 @@ end
 
 
 % --- Executes just before shuiguofenleiqi is made visible.
-function FruitRecognition_OpeningFcn(hObject, eventdata, handles, varargin)
+function FruitRecognition_OpeningFcn(hObject, ~, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -65,7 +65,7 @@ axis tight;
 axis off;
 
 % --- Outputs from this function are returned to the command line.
-function varargout = FruitRecognition_OutputFcn(hObject, eventdata, handles) 
+function varargout = FruitRecognition_OutputFcn(~, ~, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -76,7 +76,7 @@ varargout{1} = handles.output;
 
 
 % --- Executes on button press in bt1.
-function bt1_Callback(hObject, eventdata, handles)
+function bt1_Callback(~, ~, handles)
 % hObject    handle to bt1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -93,7 +93,7 @@ axis tight;
 axis off;
 end
 % --- Executes on button press in bt3.
-function bt3_Callback(hObject, eventdata, handles)
+function bt3_Callback(~, ~, ~)
 % hObject    handle to bt3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -139,12 +139,12 @@ axis off;
 
 
 % --- Executes on button press in pushbutton6.
-function pushbutton6_Callback(hObject, eventdata, handles)
+function pushbutton6_Callback(~, ~, ~)
 % hObject    handle to pushbutton6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global img;
-global path;
+
 I2=rgb2gray(img);    
 BW=im2bw(I2,0.9);   
 SE=strel('rectangle',[40 30]);   
@@ -163,12 +163,12 @@ axis off;
 
 
 % --- Executes on button press in pushbutton7.
-function pushbutton7_Callback(hObject, eventdata, handles)
+function pushbutton7_Callback(~, ~, handles)
 % hObject    handle to pushbutton7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global img;
-global path;
+
 
 I2=rgb2gray(img);     
 BW=im2bw(I2,0.9);     
@@ -312,3 +312,25 @@ end
 axis equal;
 axis tight;
 axis off;
+
+
+% --- Executes during object creation, after setting all properties.
+function figure1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+ha=axes('units','normalized','pos',[0 0 1 1]);
+uistack(ha,'down');
+ii=imread('background.jpg');
+image(ii);
+colormap gray
+set(ha,'handlevisibility','off','visible','on');
+
+
+% --- Executes on button press in pushbutton9.
+function pushbutton9_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton9 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+url = 'https://github.com/qinnian/Fruit-Recognition';
+web(url,'-browser')
